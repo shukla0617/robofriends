@@ -3,6 +3,8 @@ import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import "./App.css";
 import Scroll from "../components/Scroll";
+// eslint-disable-next-line no-unused-vars
+import ErrorBoundry from "../components/ErrorBoundry";
 
 class App extends React.Component {
     constructor() {
@@ -24,6 +26,7 @@ class App extends React.Component {
 
     render() {
         const { robots, searchfield } = this.state;
+        const filteredRobots = robots.filter(robot => robot.name.toLowerCase().includes(searchfield.toLowerCase()));
         if (!robots.length) {
             return <h1>Loading...</h1>;
         }
@@ -32,8 +35,10 @@ class App extends React.Component {
                 <div className="tc">
                     <h1 className="f1 tc">RoboFriends</h1>
                     <SearchBox searchfield={searchfield} onsearchChange={this.onsearchChange} />
-                    <Scroll>                        
-                        <CardList robots={robots.filter(robot => robot.name.toLowerCase().includes(searchfield.toLowerCase()))} />
+                    <Scroll>
+                        <ErrorBoundry>
+                            <CardList robots={filteredRobots} />
+                        </ErrorBoundry>
                     </Scroll>
                 </div>
             );
