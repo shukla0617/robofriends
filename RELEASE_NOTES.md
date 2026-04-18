@@ -10,6 +10,7 @@
 - **Reset Button**: Added a reset button to clear the search field.
 - **Error Boundary**: Implemented error boundary component for better error handling.
 - **Scroll Component**: Added scrollable container for the robot cards.
+- **Git Hooks Support**: Added support for Git hooks in App.js.
 
 ### Components
 - `App`: Main container using hooks.
